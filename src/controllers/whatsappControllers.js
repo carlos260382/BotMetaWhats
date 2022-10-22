@@ -4,7 +4,7 @@ const processMessage = require("../shared/processMessage");
 const VerifyToken = (req, res) => {
   console.log("el get whatsapp verifytoken");
   try {
-    var accessToken = "MEMTGDD05DDFS01DDE4511E";
+    var accessToken = "RTQWWTVHBDEJHJKIKIKNDS9090DS";
     var token = req.query["hub.verify_token"];
     var challenge = req.query["hub.challenge"];
 
