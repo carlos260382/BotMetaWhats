@@ -3,41 +3,41 @@ const myConsole = new console.Console(fs.createWriteStream("./logs.txt"));
 const processMessage = require("../shared/processMessage");
 const VerifyToken = (req, res) => {
   console.log("el get whatsapp verifytoken");
-  //   try {
-  //     var accessToken = "MEMTGDD05DDFS01DDE4511E";
-  //     var token = req.query["hub.verify_token"];
-  //     var challenge = req.query["hub.challenge"];
+  try {
+    var accessToken = "MEMTGDD05DDFS01DDE4511E";
+    var token = req.query["hub.verify_token"];
+    var challenge = req.query["hub.challenge"];
 
-  //     if (challenge != null && token != null && token == accessToken) {
-  //       res.send(challenge);
-  //     } else {
-  //       res.status(400).send();
-  //     }
-  //   } catch (e) {
-  //     res.status(400).send();
-  //   }
+    if (challenge != null && token != null && token == accessToken) {
+      res.send(challenge);
+    } else {
+      res.status(400).send();
+    }
+  } catch (e) {
+    res.status(400).send();
+  }
 };
 
 const ReceivedMessage = (req, res) => {
   console.log("el post whatsapp received message");
-  //   try {
-  //     var entry = req.body["entry"][0];
-  //     var changes = entry["changes"][0];
-  //     var value = changes["value"];
-  //     var messageObject = value["messages"];
-  //     if (typeof messageObject != "undefined") {
-  //       var messages = messageObject[0];
-  //       var number = messages["from"];
-  //       var text = GetTextUser(messages);
-  //       if (text != "") {
-  //         processMessage.Process(text, number);
-  //       }
-  //     }
-  //     res.send("EVENT_RECEIVED");
-  //   } catch (e) {
-  //     myConsole.log(e);
-  //     res.send("EVENT_RECEIVED");
-  //   }
+  try {
+    var entry = req.body["entry"][0];
+    var changes = entry["changes"][0];
+    var value = changes["value"];
+    var messageObject = value["messages"];
+    if (typeof messageObject != "undefined") {
+      var messages = messageObject[0];
+      var number = messages["from"];
+      var text = GetTextUser(messages);
+      if (text != "") {
+        processMessage.Process(text, number);
+      }
+    }
+    res.send("EVENT_RECEIVED");
+  } catch (e) {
+    myConsole.log(e);
+    res.send("EVENT_RECEIVED");
+  }
 };
 
 function GetTextUser(messages) {
