@@ -1,10 +1,13 @@
 const fs = require("fs");
+const dotenv = require("dotenv");
+
+dotenv.config();
 const myConsole = new console.Console(fs.createWriteStream("./logs.txt"));
 const processMessage = require("../shared/processMessage");
 const VerifyToken = (req, res) => {
   console.log("el get whatsapp verifytoken");
   try {
-    var accessToken = "RTQWWTVHBDEJHJKIKIKNDS9090DS";
+    var accessToken = process.env.TOKEN_WEBHOOK;
     var token = req.query["hub.verify_token"];
     var challenge = req.query["hub.challenge"];
 
